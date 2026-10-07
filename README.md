@@ -26,6 +26,14 @@ La página “Hola Mundo” se despliega automáticamente mediante GitHub Action
 - Página publicada: https://brlamafia.github.io/electiva2/
 - Workflow: [Deploy GitHub Pages](https://github.com/Brlamafia/electiva2/actions/workflows/deploy-pages.yml)
 
+## Práctica 4: integración continua y alertas
+
+El programa [`hello.js`](hello.js) imprime “¡Hola, mundo desde JavaScript!”. El workflow [`alerta.yml`](.github/workflows/alerta.yml) se ejecuta en cada push a `main` y envía el resultado a:
+
+- Canal ntfy: https://ntfy.sh/devops-itla
+- Ejecuciones: https://github.com/Brlamafia/electiva2/actions/workflows/alerta.yml
+
 ## Desarrollo local
 
-Abre `index.html` directamente en el navegador o sirve el directorio con cualquier servidor HTTP estático.
+- Página web: abre `index.html` directamente en el navegador.
+- Programa JavaScript: ejecuta `node hello.js`.
