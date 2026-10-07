@@ -18,6 +18,14 @@ El trabajo del proyecto se administra mediante GitHub Issues y el tablero:
 - [Planificación Kanban – electiva2](https://github.com/users/Brlamafia/projects/1)
 - [Incidencias del repositorio](https://github.com/Brlamafia/electiva2/issues)
 
-## Repositorio
+## Práctica 3: automatización web con GitHub Pages
 
-https://github.com/Brlamafia/electiva2
+La página “Hola Mundo” se despliega automáticamente mediante GitHub Actions cada vez que se integran cambios en `main`.
+
+- Repositorio: https://github.com/Brlamafia/electiva2
+- Página publicada: https://brlamafia.github.io/electiva2/
+- Workflow: [Deploy GitHub Pages](https://github.com/Brlamafia/electiva2/actions/workflows/deploy-pages.yml)
+
+## Desarrollo local
+
+Abre `index.html` directamente en el navegador o sirve el directorio con cualquier servidor HTTP estático.
