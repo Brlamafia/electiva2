@@ -1,0 +1,43 @@
+name: Alerta de integración continua
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hello-and-notify:
+    name: Ejecutar Hola Mundo y notificar
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Ejecutar programa Hola Mundo
+        run: node hello.js
+
+      - name: Notificar a ntfy.sh
+        if: always()
+        env:
+          NTFY_TOPIC: https://ntfy.sh/devops-itla
+          REPOSITORY: ${{ github.repository }}
+          COMMIT_SHA: ${{ github.sha }}
+          ACTOR: ${{ github.actor }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          curl --fail --show-error --silent --retry 3 \
+            -H "Title: GitHub Actions - electiva2" \
+            -H "Tags: robot,white_check_mark" \
+            -H "Priority: default" \
+            --data "Practica 4 ejecutada en ${REPOSITORY}. Estado: ${JOB_STATUS}. Commit: ${COMMIT_SHA}. Autor: ${ACTOR}." \
+            "${NTFY_TOPIC}"
