@@ -1,0 +1,44 @@
+name: Deploy to Surge.sh
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  SURGE_DOMAIN: electiva2-brlamafia.surge.sh
+
+jobs:
+  deploy:
+    name: Publicar página en Surge.sh
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Verificar el secreto de Surge
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: |
+          if [ -z "${SURGE_TOKEN}" ]; then
+            echo "::error::El secreto SURGE_TOKEN no está configurado."
+            exit 1
+          fi
+
+      - name: Desplegar en Surge.sh
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: npx surge ./ "${SURGE_DOMAIN}" --token "${SURGE_TOKEN}"

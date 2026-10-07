@@ -33,7 +33,20 @@ El programa [`hello.js`](hello.js) imprime “¡Hola, mundo desde JavaScript!”
 - Canal ntfy: https://ntfy.sh/devops-itla
 - Ejecuciones: https://github.com/Brlamafia/electiva2/actions/workflows/alerta.yml
 
+## Práctica 5: despliegue continuo con Surge.sh
+
+El workflow [`main.yml`](.github/workflows/main.yml) instala Surge y publica automáticamente la página cuando se actualiza `main`.
+
+- Sitio previsto: https://electiva2-brlamafia.surge.sh
+- Workflow: https://github.com/Brlamafia/electiva2/actions/workflows/main.yml
+- Autenticación: secreto de repositorio `SURGE_TOKEN`
+- Dependencia: Surge CLI `0.44.4`
+
+El token de Surge nunca se almacena en el código. Debe crearse con alcance exclusivo para `electiva2-brlamafia.surge.sh` y guardarse en GitHub Actions Secrets.
+
 ## Desarrollo local
 
 - Página web: abre `index.html` directamente en el navegador.
 - Programa JavaScript: ejecuta `node hello.js`.
+- Instalar dependencias: ejecuta `npm install`.
+- Despliegue manual: ejecuta `npm run deploy:surge` después de autenticarte en Surge.

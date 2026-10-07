@@ -1,0 +1,12 @@
+{
+  "name": "electiva2-practica-surge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Página estática desplegada automáticamente con GitHub Actions y Surge.sh",
+  "scripts": {
+    "deploy:surge": "surge ./ electiva2-brlamafia.surge.sh"
+  },
+  "devDependencies": {
+    "surge": "0.44.4"
+  }
+}
